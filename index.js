@@ -1,10 +1,31 @@
 const express = require('express')
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth20').Strategy
+const keys = require('./config/keys')
+const PORT = process.env.PORT || 5000
+
 const app = express()
 
-const PORT = process.env.PORT || 4200
+passport.use( 
+    new GoogleStrategy({
+        clientID:keys.googleClientID,
+        clientSecret:keys.googleClientSecret,
+        callbackURL: '/auth/google/callback'
+        }, 
+        (accessToken)=>{
+            console.log(accessToken)
+        }) 
+    ) //new instance of authentication with google
 
-app.get('/', (req, res)=>{
-    res.send({hi:'Larhendiel', user:{lala:[1,2,3,4,5], bobo:true}, ata:el=>{bobo}})
-})
+app.get(
+    '/auth/google', 
+    passport.authenticate(
+        'google', 
+        { scope: ['profile','email'] }
+    )
+)
 
-app.listen(PORT)
+app.get( '/auth/google/callback', passport.authenticate('google') )
+
+
+app.listen(PORT, ()=>console.log(`listening on port: http://localhost:${PORT}/`))
