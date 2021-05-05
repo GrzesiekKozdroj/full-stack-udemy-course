@@ -1,0 +1,24 @@
+# emailer full stack application
+>
+it is going to be a fullstack application into which clients will be able to log in through google, make payments, create forms, send these custom made forms to a list of emails, recieve responses and analyse data.
+
+##General info
+>
+right now the project is 'live' on heroku, it allows you to log in aand thats about all.
+https://pacific-cliffs-67621.herokuapp.com/auth/google
+it'll also create new entry on my mongo database.
+Right now the project is set up so it accepts two different sets of keys for both **oAuth** from google and mongo database. Node detects whether it is in production or development enviroment. One set of keys I saved on heroku, while other is private on my machine for security. Application also uses **nodemon** for smooth update of changes done on server code and **react-app** for updating changes on front side. I also use **concurrently** to start both back end server as well as node server with one command for convenience. To avoid issues with CORS I use **http-proxy-middleware**
+
+##Technologies 
+>
+* node v14.16.1
+* express 4.17.1
+* mongoose 5.12.5
+* oAuth 2.0
+* react 
+* http-proxy-middleware 1.3.1
+* react 17.0.2
+*concurrently 6.0.2
+
+##Setup
+To install and set it up on your own machine you will need to have set of credential from google console and mongoDB and create file in ./config/dev.js
