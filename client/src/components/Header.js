@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Payments from './Payments'
+import Credits from './Credits'
 
 class Header extends Component{
     renderContent(){
