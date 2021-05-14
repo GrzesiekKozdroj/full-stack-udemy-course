@@ -19,16 +19,23 @@ mongoose.connect(keys.mongoURI, {
 const app = express()
 app.use(bodyParser.json())
 
-app.use(
-    cookieSession({
-        maxAge:30 * 24 * 60 *60 * 1000,
-        keys: [keys.cookieKey]
-    })
-)
+app.use(cookieSession({maxAge:30 * 24 * 60 *60 * 1000, keys: [keys.cookieKey]    }))
 app.use(passport.initialize())
 app.use(passport.session())
 
 require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app)
+//only on heroku
+if(process.env.NODE_ENV === 'production'){
+    //make sure express serves prod assets like 
+    //main.css and main.js files
+    app.use(express.static('client/build'))
+
+    //express will serve up html file if it doesnt recognise route
+    const path = require('path')
+    app.get('*', (req,res)=>{
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 app.listen(PORT, ()=>console.log(`listening on port: http://localhost:${PORT}/auth/google`))
