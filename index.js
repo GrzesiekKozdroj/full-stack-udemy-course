@@ -26,6 +26,8 @@ app.use(passport.session())
 
 require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app)
+require('./routes/surveyRoutes')(app)
+
 //only on heroku
 if(process.env.NODE_ENV === 'production'){
     //make sure express serves prod assets like 
