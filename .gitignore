@@ -1,3 +1,4 @@
 node_modules
 secret
+dev.jssendgrid.env
 dev.js
