@@ -8,11 +8,14 @@ import { createStore, applyMiddleware } from 'redux'
 
 import reducers from './reducers/index'
 import App from './components/App'
+
 //code for testing instead of postman
 import axios from 'axios' 
 window.axios = axios
 
+
 const store = createStore( reducers, {}, applyMiddleware(reduxThunk) )
+window.store = store
 
 ReactDOM.render(
     <Provider store={store} >
