@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Dashboard = ()=>{
         return (
-            <div>
+            <div className='container'>
                 Dashboard
                 <div className="fixed-action-btn">
                 <Link className="btn-floating btn-large teal" to="/surveys/new">

@@ -17,6 +17,7 @@
   "author": "Larhendiel",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.0",
     "@sendgrid/mail": "^7.4.4",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
@@ -25,6 +26,7 @@
     "mongoose": "^5.12.5",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
+    "redux-form": "^8.3.7",
     "sendgrid": "^5.2.3",
     "stripe": "^8.148.0"
   },
