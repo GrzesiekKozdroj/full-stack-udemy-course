@@ -6,14 +6,9 @@ import { reduxForm, Field } from 'redux-form'
 import SurveyField from './SurveyField'
 import { Link } from 'react-router-dom'
 import validateEmails from '../../utils/validateEmails'
+import fieldsToRender from './formFields'
 
 let emailList = 'emailList'
-const fieldsToRender = [
-    { label:'Title', name:'title' },
-    { label:'Subject',name:'subject' },
-    { label:'Body',name:'body' },
-    { label:'Email List', name:emailList },
-]
 
 class SurveyForm extends Component {
     renderFields (){
@@ -35,7 +30,7 @@ class SurveyForm extends Component {
         return(
             <form 
                 className="container"
-                onSubmit={this.props.handleSubmit/*comes from reduxForm*/(values=>console.log(values))}
+                onSubmit={ this.props.handleSubmit/*comes from reduxForm*/(this.props.onSurveySubmit) }
             >
                 {this.renderFields()}
                 <Link  className="red btn-flat white-text" to="/surveys">
@@ -43,6 +38,7 @@ class SurveyForm extends Component {
                     <i className="material-icons right">cancel</i>
                 </Link>
                 <button 
+
                     type="submit"
                     className="teal btn-flat right white-text"
                 >
@@ -65,6 +61,7 @@ const validate = values => { //takes values object which is the same as the one 
 export default reduxForm({
     form: 'surveyForm',
     validate,//redux form expects such function named this way
+    destroyOnUnmount: false //persist data, read docs for react-redux-form
 })(SurveyForm)
 //redux slice example, kool new feature
 // import { createSlice } from '@reduxjs/toolkit'
