@@ -1,17 +1,16 @@
 import { Component } from 'react'
 import SurveyForm from './surveyForm'
 import SurveyReviewComponent from './SurveyFormReview'
+import { reduxForm } from 'redux-form'
 
 
 class SurveyNew extends Component {
     state = { showFormReview: false }
     renderContent () {
-        console.log('render triggered', this.state)
         return !this.state.showFormReview ? 
             <SurveyForm 
                 onSurveySubmit={()=>{
                     this.setState({showFormReview: true})
-                    console.log('change in state triggered')
                 }}
             /> : <SurveyReviewComponent 
                 onCancel={()=>this.setState({showFormReview:false})}
@@ -26,4 +25,7 @@ class SurveyNew extends Component {
     }
 }
 
-export default SurveyNew
+export default reduxForm({
+    form:'surveyForm'
+})(SurveyNew)
+//adding redux form connect method here clears form values

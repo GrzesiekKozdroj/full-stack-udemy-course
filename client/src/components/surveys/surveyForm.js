@@ -1,14 +1,13 @@
 
 import { Component, useState } from 'react'
-import { connect } from 'react-redux'
-import * as actions from '../../actions'
+// import { connect } from 'react-redux'
+// import * as actions from '../../actions'
 import { reduxForm, Field } from 'redux-form'
 import SurveyField from './SurveyField'
 import { Link } from 'react-router-dom'
 import validateEmails from '../../utils/validateEmails'
 import fieldsToRender from './formFields'
 
-let emailList = 'emailList'
 
 class SurveyForm extends Component {
     renderFields (){
@@ -53,9 +52,9 @@ const validate = values => { //takes values object which is the same as the one 
     const errors = {}
     fieldsToRender.map(({ label, name })=>{
         if(!values[name])
-            errors[name] = `Please provide ${ name === emailList ? 'Email List' : label }`
+            errors[name] = `Please provide ${ name === 'recipients' ? 'Email List' : label }`
     })
-    errors.emailList = validateEmails(values.emailList || '')
+    errors.recipients = validateEmails(values.recipients || '')
     return errors //when redux recieves this object and its empty, it'll accept the form as flawless
 }
 export default reduxForm({
@@ -63,6 +62,28 @@ export default reduxForm({
     validate,//redux form expects such function named this way
     destroyOnUnmount: false //persist data, read docs for react-redux-form
 })(SurveyForm)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //redux slice example, kool new feature
 // import { createSlice } from '@reduxjs/toolkit'
 // const sliceExample = createSlice({

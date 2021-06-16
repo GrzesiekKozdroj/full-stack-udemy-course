@@ -1,29 +1,30 @@
 import { connect } from 'react-redux'
 import fieldsToRender from './formFields'
+import * as actions from '../../actions'
+import { withRouter } from 'react-router'
 
 const SurveyReviewComponent = (props) => {
-    console.log(props)
-    const { onCancel, formValues } = props
-    const Element =(value, label)=> {
-        return(<div key={label} >
+    const { onCancel, formValues, submitSurvey, history } = props
+    const Element =(name, label)=> {
+        return(<div key={name} >
             <label>{label}</label>
-            <div>{value}</div>
+            <div>{formValues[name]}</div>
         </div>)
     }
-    return (<div>
+    return (<form>
         <h5>Please confirm your entries</h5>
-        {  fieldsToRender.map(({ label, name }) => Element(formValues[name],label))  }
+        {  fieldsToRender.map(({ label, name }) => Element(name,label))  }
         <button className="red left btn-flat white-text" onClick={ onCancel }>
             go back
             <i className='material-icons right'>cancel</i>
         </button>
-        <button className="teal right btn-flat white-text" onClick={ onCancel }>
-            send
+        <button className="teal right btn-flat white-text" onClick={ ()=>submitSurvey(formValues, history) }>
+            send surveys
             <i className='material-icons right'>send</i>
         </button>
-    </div>)
+    </form>)
 }
 function mapStateToProps({form}){
  return { formValues: form.surveyForm.values }
 }
-export default connect(mapStateToProps)(SurveyReviewComponent)
+export default connect(mapStateToProps, actions)(withRouter(SurveyReviewComponent))
