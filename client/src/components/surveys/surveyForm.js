@@ -37,7 +37,6 @@ class SurveyForm extends Component {
                     <i className="material-icons right">cancel</i>
                 </Link>
                 <button 
-
                     type="submit"
                     className="teal btn-flat right white-text"
                 >

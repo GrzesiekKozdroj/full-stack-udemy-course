@@ -11,14 +11,17 @@ const SurveyReviewComponent = (props) => {
             <div>{formValues[name]}</div>
         </div>)
     }
-    return (<form>
+    return (<form onSubmit={ (e)=>{
+            e.preventDefault()
+            submitSurvey(formValues, history) 
+        }}>
         <h5>Please confirm your entries</h5>
         {  fieldsToRender.map(({ label, name }) => Element(name,label))  }
         <button className="red left btn-flat white-text" onClick={ onCancel }>
             go back
             <i className='material-icons right'>cancel</i>
         </button>
-        <button className="teal right btn-flat white-text" onClick={ ()=>submitSurvey(formValues, history) }>
+        <button className="teal right btn-flat white-text" type="submit">
             send surveys
             <i className='material-icons right'>send</i>
         </button>
