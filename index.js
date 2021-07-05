@@ -41,4 +41,4 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.listen(PORT, ()=>console.log(`listening on port: http://localhost:${PORT}/auth/google`))
+app.listen(PORT, ()=>console.log(`listening on: http://localhost:${PORT}/`))
