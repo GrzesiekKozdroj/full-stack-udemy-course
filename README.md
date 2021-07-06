@@ -54,8 +54,8 @@ module.exports = {
 }
 ```
 
-Where `YOUR_UNIQ_KEY` is the key you obtain from your accounts with corresponding providers: mongoDB. google, stripe, send grid, whereas `cookieKey` can be any random set of your own characters in form of string.
-Once all of the above is done you can run command 'npm run dev' inside project's root folder.
+Where `YOUR_UNIQ_KEY` is the key you obtain from your accounts with corresponding providers: mongoDB. google, stripe, send grid, whereas `cookieKey` can be any random set of your own characters in form of string. Then in new terminal run command `npx ngrok http 5000` this will proviedd you with two web addresses, then go to [https://app.sendgrid.com/settings/mail_settings](https://app.sendgrid.com/settings/mail_settings), click on __edit__ button next to __event webhook__ and paste one of the web addresses provided from __ngrok__, adding at th end `/api/surveys/webhooks` so your whole web address will look like `https://2b74e8dc90f9.ngrok.io/api/surveys/webhooks`.
+Once all of the above is done you can run command 'npm run dev' inside project's root folder. Log in with your google account, add credits yousing stripe, which is in testing mode and will accept a card with number 4242 4242 4242 4242 with any future axpiry date and any security code. Then click on __emailer logo and on bit __+__ button to create and send new survey.
 
 ## Features
 
