@@ -1,24 +1,69 @@
-# emailer full stack application
+# __emailer
 >
-it is going to be a fullstack application into which clients will be able to log in through google, make payments, create forms, send these custom made forms to a list of emails, recieve responses and analyse data.
+## Table of contents
+* [General info](#general-info)
+* [Screenshot](#screenshot)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
 
-##General info
->
-right now the project is 'live' on heroku, it allows you to log in aand thats about all.
-https://pacific-cliffs-67621.herokuapp.com/auth/google
-it'll also create new entry on my mongo database.
-Right now the project is set up so it accepts two different sets of keys for both **oAuth** from google and mongo database. Node detects whether it is in production or development enviroment. One set of keys I saved on heroku, while other is private on my machine for security. Application also uses **nodemon** for smooth update of changes done on server code and **react-app** for updating changes on front side. I also use **concurrently** to start both back end server as well as node server with one command for convenience. To avoid issues with CORS I use **http-proxy-middleware**
+## General info
+I wanted to be more proficient at building, developing and creating production mode for react app connected with my own back end server. And not just that I wanted to be able to send form data, send emails, charge people, allow them to log in and access database as well as creating new entries and gather info from links people clicked in my emails. As it turned out I managed to find udemy course which taught just that.
 
-##Technologies 
->
-* node v14.16.1
-* express 4.17.1
-* mongoose 5.12.5
-* oAuth 2.0
-* react 
-* http-proxy-middleware 1.3.1
-* react 17.0.2
-*concurrently 6.0.2
+## Screenshot
+![Example screenshot](./screenshot.jpg)
 
-##Setup
-To install and set it up on your own machine you will need to have set of credential from google console and mongoDB and create file in ./config/dev.js
+## Technologies
+* sendgrid - version 5.2.3
+* @sendgrid/mail - version 7.4.4
+* @reduxjs/toolkit - version 1.6.0
+* body-parser - version 1.19.0
+* concurrently - version 6.0.2
+* cookie-session - version 1.4.0
+* express - version 4.17.1
+* lodash - version 4.17.21
+* mongoose - version 5.12.5
+* passport - version 0.4.1
+* passport-google-oauth20 - version 2.0.0
+* path-parser - version 6.1.0
+* redux-form - version 8.3.7
+* stripe - version 8.148.0
+
+## Setup
+In order to set up project locally, after downloading, you will notice there are two package.json files inside this project, one for fronend react, one for backend node server, both will require installing their dependencies.
+Once thats done you will need to create a `dev.js` file inside `config` folder. in this file you will need to create object:
+```javascript
+module.exports = {
+    googleClientID:          YOUR_UNIQ_KEY,
+    googleClientSecret:      YOUR_UNIQ_KEY,
+    mongoURI:                YOUR_UNIQ_KEY,
+    cookieKey:               YOUR_UNIQ_KEY,
+    stripePublishableKey:    YOUR_UNIQ_KEY,
+    stripeSecretKey:         YOUR_UNIQ_KEY,
+    sendGridKey:             YOUR_UNIQ_KEY,
+    redirectDomain:'http://localhost:3000',
+}
+```
+Where YOUR_UNIQ_KEY is the key you obtain from your accounts with corresponding providers: mongoDB. google, stripe, send grid, whereas 'cookieKey' can be any random set of your own characters in form of string.
+Once all of the above is done you can run command 'npm run dev' inside project's root folder.
+
+## Features
+List of features ready and TODOs for future development
+* can login with google accounts, creating profile/loging in to existing profile
+* can buy credits using stripe
+* can make simple form with one question and one set of either yes or no answers
+* can send said form to a list of coma separated emails
+* can collect votes from recepients and display it on dashboard to form creator
+* charges one token per campain
+
+## Status
+Project is completed but not deployed on heroku, I've learned all I wanted from this course, and I don't feel like creating such service as viable business
+
+## Inspiration
+Project based on [Node with React: Fullstack Web Development](https://www.udemy.com/course/node-with-react-fullstack-web-development/learn/lecture/24616618?start=1#overview) Udemy course
+
+## Contact
+Created by gregkozdroj@gmail.com, feel free to contact me.
